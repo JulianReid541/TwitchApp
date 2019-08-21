@@ -31,3 +31,16 @@
     transform: rotate(360deg);
   }
 }
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.link {
+  color: #fff;
+}
+
+.link:hover {
+  color: #fff;
+}
