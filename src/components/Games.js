@@ -15,7 +15,7 @@ function Games() {
 
     return <div>
         <h1>Most Popular Games</h1>
-    </div>;
+    </div>
 }
 
 export default Games
