@@ -12,8 +12,8 @@ function Games() {
           let dataArray = result.data.data;
           let finalArray = dataArray.map(game => {
             let newURL = game.box_art_url
-              .replace("{width}", "300")
-              .replace("{height}", "300");
+              .replace("{width}", "200")
+              .replace("{height}", "200");
             game.box_art_url = newURL;
             return game;
           });
@@ -28,7 +28,7 @@ function Games() {
           <h1 className="well text-center">Most Popular Games</h1>
           <div className="row">
             {games.map(game => (
-              <div className="col-lg-4 col-md-6 col-sm-12 mt-5">
+              <div className={game.id + " col-lg-4 col-md-6 col-sm-12 mt-5"}>
                 <div className="card">
                   <img className="card-img-top" alt="" src={game.box_art_url} />
                   <div className="card-body">
