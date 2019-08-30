@@ -1,11 +1,12 @@
 import axios from 'axios'
+require('dotenv');
 
 
-let API_KEY = process.env.REACT_APP_TWITCHKEY
+let TWITCHAPI = process.env.REACT_APP_TWITCH_KEY;
 let api = axios.create({
     headers: {
         //get api from dev.Twitch.tv
-        "Client-ID": API_KEY
+        "Client-ID": TWITCHAPI
     }
 });
 
