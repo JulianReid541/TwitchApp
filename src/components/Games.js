@@ -32,7 +32,7 @@ function Games() {
           <h1 className="well text-center">Most Popular Games</h1>
           <div className="row">
             {games.map(game => (
-              <div className={game.name + " col-lg-4 col-md-6 col-sm-12 mt-5"}>
+              <div key = {game.id} className={game.name + " col-lg-4 col-md-6 col-sm-12 mt-5"}>
                 <div className="card">
                   <img className="card-img-top" alt="" src={game.box_art_url} />
                   <div className="card-body">
