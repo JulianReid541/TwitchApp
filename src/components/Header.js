@@ -1,6 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
 
+
+//ALWAYS LOADED AT THE TOP OF THE PAGE. NEVER CHANGES
 function Header() {
     return (
         <nav className="navbar justify-content-center">
