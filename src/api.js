@@ -1,5 +1,4 @@
-import axios from 'axios'
-require('dotenv');
+import axios from 'axios';
 
 
 let TWITCHAPI = process.env.REACT_APP_TWITCH_KEY;

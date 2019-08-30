@@ -12,6 +12,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "shards-ui/dist/css/shards.min.css";
 
 function App() {
+  console.log(process.env.REACT_APP_TWITCH_KEY);
+  console.log(process.env.NODE_ENV);
   return (
     <Router>
       <Header />
