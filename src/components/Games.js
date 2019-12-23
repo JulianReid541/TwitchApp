@@ -21,12 +21,12 @@ function Games() {
             game.box_art_url = newURL;
             return game;
           });
-          console.log(finalArray);
+          console.table(finalArray);
           setGames(finalArray);
         };
         fetchData();
     }, []);
-    //the games component returns a shard-ui box with evcry game in the final array's info. 
+    //the games component returns a shard-ui box with every game in the final array's info. 
     return (
         <div>
           <h1 className="well text-center">Most Popular Games</h1>
