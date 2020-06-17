@@ -11,7 +11,7 @@ function Games() {
   final array is the combined info from box art width and height as well as a url from the box art name stored into a game object */
     useEffect(() => {
         const fetchData = async () => {
-          const result = await api.get("https://api.twitch.tv/helix/games/top");
+          const result = await api.get("https://api.twitch.tv/kraken/games/top?limit=20");
           console.log(result.data);
           let dataArray = result.data.data;
           let finalArray = dataArray.map(game => {

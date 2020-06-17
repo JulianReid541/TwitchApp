@@ -5,13 +5,12 @@ import axios from 'axios';
     RENAME TO api.js and everything will work
 */
 
-let TWITCHAPI = process.env.REACT_APP_TWITCH_API; //TwitchAPIKEY;
-let TWITCHAUTH = "Bearer " + process.env.REACT_APP_AUTH_KEY;
+let TWITCHAPI = process.env.REACT_APP_TWITCH_API; //TwitchAPIKEY
 let api = axios.create({
     headers: {
         //get api from dev.Twitch.tv
-        "Authorization": TWITCHAUTH,
-        "Client-ID": TWITCHAPI
+        "Client-ID": TWITCHAPI,
+        "Accept": 'application/vnd.twitchtv.v5+json'
     }
 });
 
