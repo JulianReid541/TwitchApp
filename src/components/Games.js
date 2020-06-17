@@ -12,16 +12,16 @@ function Games() {
     useEffect(() => {
         const fetchData = async () => {
           const result = await api.get("https://api.twitch.tv/kraken/games/top?limit=20");
-          console.log(result.data);
-          let dataArray = result.data.data;
+          //console.log(result.data);
+          let dataArray = result.data.top;
           let finalArray = dataArray.map(game => {
-            let newURL = game.box_art_url
+            let newURL = game.game.box.template
               .replace("{width}", "200")
               .replace("{height}", "200");
-            game.box_art_url = newURL;
+              game.game.box.template = newURL;
             return game;
           });
-          console.log(finalArray);
+          console.table(finalArray);
           setGames(finalArray);
         };
         fetchData();
@@ -32,22 +32,22 @@ function Games() {
           <h1 className="well text-center">Most Popular Games</h1>
           <div className="row">
             {games.map(game => (
-              <div key = {game.id} className={game.name + " col-lg-4 col-md-6 col-sm-12 mt-5"}>
+              <div key = {game.game._id} className={game.game.name + " col-lg-4 col-md-6 col-sm-12 mt-5"}>
                 <div className="card">
-                  <img className="card-img-top" alt="" src={game.box_art_url} />
+                  <img className="card-img-top" alt="" src={game.game.box.template} />
                   <div className="card-body">
-                    <h5 className="card-title">{game.name}</h5>
+                    <h5 className="card-title">{game.game.name}</h5>
                     <button className="btn btn-success">
                       <Link
                         className="link"
                         to={{
-                          pathname: "game/" + game.name,
+                          pathname: "game/" + game.game.name,
                           state: {
-                            gameID: game.id
+                            gameID: game.game._id
                           }
                         }}
                       >
-                        {game.name} streams{" "}
+                        {game.game.name} streams{" "}
                       </Link>
                     </button>
                   </div>
