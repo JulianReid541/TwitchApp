@@ -6,34 +6,9 @@ function Stream() {
     useEffect(() => {
         const fetchData = async () => {
             const result = await api.get("https://api.twitch.tv/kraken/streams");
-            let dataArray = result.data.top;
-            let gameIDs = dataArray.map(stream => {
-                return stream.streams._id;
-            });
+            let dataArray = result.data.streams;
 
-            let baseURL = "https://api.twitch.tv/kraken/games?";
-            let queryParams ="";
-            gameIDs.map(id => {
-                return (queryParams = queryParams + `id=${id}&`);
-            });
-
-            let finalURL = baseURL + queryParams;
-            let gameNames = await api.get(finalURL);
-            let gameNameArray = gameNames.data.data;
-
-            let finalArray = dataArray.map(stream => {
-                stream.gameName = "";
-                gameNameArray.map(name => {
-                    if(stream.game_id === name.id) {
-                        return (stream.gameName = name.name);
-                    }
-                });               
-            
-
-                let newURL = stream.thumbnail_url
-                    .replace("{width}", "200")
-                    .replace("height", "200");
-                stream.thumbnail_url = newURL;
+            let finalArray = dataArray.map(stream => {             
                 return stream;
             });
         setChannels(finalArray);
@@ -47,20 +22,20 @@ function Stream() {
             {channels.map(channel => (
               <div className="col-lg-4 col-md-6 col-sm-12 mt-5">
                 <div className="card">
-                  <img className="card-img-top" src={channel.thumbnail_url} />
+                  <img className="card-img-top" src={channel.preview.large} />
                   <div className="card-body">
-                    <h3 className="card-title">{channel.user_name}</h3>
-                    <h5 className="card-text"> {channel.gameName}</h5>
+                    <h3 className="card-title">{channel.channel.name}</h3>
+                    <h5 className="card-text"> Playing {channel.game}</h5>
                     <div className="card-text">
-                      {channel.viewer_count} live viewers
+                      {channel.viewers} live viewers
                     </div>
                     <button className="btn btn-success">
                       <a
-                        href={"https://twitch.tv/" + channel.user_name}
+                        href={channel.channel.url}
                         className="link"
                         target="_blank"
                       >
-                        watch {channel.user_name}'s' stream
+                        <strong>watch {channel.channel.name}'s' stream</strong>
                       </a>
                     </button>
                   </div>
