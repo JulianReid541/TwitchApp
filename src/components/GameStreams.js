@@ -7,7 +7,7 @@ function GameStreams({match, location}) {
 
     useEffect(() =>{
         const fetchData = async () => {
-            const result = await api.get(`https://api.twitch.tv/helix/streams?game_id=${location.state.gameID}`);
+            const result = await api.get(`https://api.twitch.tv/kraken/streams?game_id=${location.state.gameID}`);
         
 
         let dataArray = result.data.data;

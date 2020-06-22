@@ -15,8 +15,8 @@ function App() {
   return (
     <Router>
       <Header />
-      <Route exact path='/' component = {Games} />
-      <Route exact path="/top-streams" component = {Streams} />
+      <Route exact path='/' component={Games} />
+      <Route exact path="/top-streams" component={Streams} />
       <Route path="/game/:id" component={GameStreams} />
    </Router>
   );
