@@ -7,20 +7,16 @@ function GameStreams({match, location}) {
 
     useEffect(() =>{
         const fetchData = async () => {
-            const result = await api.get(`https://api.twitch.tv/kraken/streams?game_id=${location.state.gameID}`);
+            const result = await api.get(`https://api.twitch.tv/kraken/streams/?game=${location.state.gameName}`);
         
 
-        let dataArray = result.data.data;
+        let dataArray = result.data.streams;
         let finalArray = dataArray.map(stream => {
-            let newURL = stream.thumbnail_url
-                .replace("{width}", "200")
-                .replace("{height}", "200");
-            stream.thumbnail_url = newURL;
             return stream;
         });
 
         let totalViewers = finalArray.reduce((acc, val) => {
-            return acc + val.viewer_count;
+            return acc + val.viewers;
         }, 0);
         setViewers(totalViewers);
         setStreamData(finalArray);
@@ -39,19 +35,19 @@ function GameStreams({match, location}) {
             {streamData.map(stream => (
               <div className="col-lg-4 col-md-6 col-sm-12 mt-5">
                 <div className="card">
-                  <img className="card-img-top" src={stream.thumbnail_url} />
+                  <img className="card-img-top" src={stream.preview.large} />
                   <div className="card-body">
-                    <h5 className="card-title">{stream.user_name}</h5>
+                    <h5 className="card-title">{stream.channel.status}</h5>
                     <div className="card-text">
-                      {stream.viewer_count} live viewers
+                      {stream.viewers} live viewers
                     </div>
                     <button className="btn btn-success">
                       <a
                         className="link"
-                        href={"https://twitch.tv/" + stream.user_name}
+                        href={stream.channel.url}
                         target="_blank"
                       >
-                        watch {stream.user_name}'s channel
+                        <strong>watch {stream.channel.name}'s channel</strong>
                       </a>
                     </button>
                   </div>

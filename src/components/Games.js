@@ -34,7 +34,7 @@ function Games() {
             {games.map(game => (
               <div key = {game.game._id} className={game.game.name + " col-lg-4 col-md-6 col-sm-12 mt-5"}>
                 <div className="card">
-                  <img className="card-img-top" alt="" src={game.game.box.template} />
+                  <img className="card-img-top" alt="" src={game.game.box.large} />
                   <div className="card-body">
                     <h5 className="card-title">{game.game.name}</h5>
                     <button className="btn btn-success">
@@ -43,7 +43,7 @@ function Games() {
                         to={{
                           pathname: "game/" + game.game.name,
                           state: {
-                            gameID: game.game._id
+                            gameName: game.game.name
                           }
                         }}
                       >

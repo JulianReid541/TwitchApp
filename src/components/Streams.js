@@ -6,7 +6,7 @@ function Stream() {
     useEffect(() => {
         const fetchData = async () => {
             const result = await api.get("https://api.twitch.tv/kraken/streams");
-            let dataArray = result.data.data;
+            let dataArray = result.data.top;
             let gameIDs = dataArray.map(stream => {
                 return stream.streams._id;
             });
